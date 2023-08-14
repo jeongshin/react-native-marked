@@ -26,7 +26,7 @@ class Parser {
 			6: this.styles.h6,
 		};
 
-		this.inlineRules = options.inlineRules ?? { link: true };
+		this.inlineRules = options.inlineRules ?? { link: false };
 	}
 
 	parse(tokens: Token[]) {
@@ -270,7 +270,7 @@ class Parser {
 			}
 
 			// Render link block
-			if (this.inlineRules.link === false && t.type === "link") {
+			if (this.inlineRules.link === true && t.type === "link") {
 				siblingNodes.push(this._parseToken(t));
 				tokenRenderQueue = [];
 				return;
