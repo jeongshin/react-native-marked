@@ -271,6 +271,12 @@ class Parser {
 
 			// Render link block
 			if (this.inlineRules.link === true && t.type === "link") {
+				const parsed = this._parse(tokenRenderQueue);
+
+				if (parsed.length > 0) {
+					siblingNodes.push(this.renderer.text(parsed, textStyle));
+				}
+
 				siblingNodes.push(this._parseToken(t));
 				tokenRenderQueue = [];
 				return;
